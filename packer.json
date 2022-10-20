@@ -17,11 +17,10 @@
             "instance_type": "{{user `instance_type`}}",
             "ami_name": "Packer-Build-{{isotime | clean_resource_name}}",
             "ssh_username": "ubuntu",
-            "user_data_file": "./defaults.cfg",
             "vpc_id": "{{user `vpc_id`}}",
             "subnet_id": "{{user `subnet_id`}}",
             "tags": {
-                "Name": "Packer-Build-{{isotime | clean_resource_name}}"
+                "Name": "Packer-Build-AMI"
             }
         }
     ],
