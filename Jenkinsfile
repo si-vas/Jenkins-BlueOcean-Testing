@@ -35,7 +35,7 @@ pipeline {
                     sh 'pwd'
                     sh 'ls -al'
                     sh 'echo "" >> variables.tf'
-                    sh "echo variable \\\"imagename\\\" { default = \\\"ami-0062dbb8abf9968ec\\\" } >> variables.tf"
+                    sh "echo variable \\\"imagename\\\" { default = \\\"ami-0834546cdf9c3e0a9\\\" } >> variables.tf"
             }
         }
         stage('Terraform Plan') {
