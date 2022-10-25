@@ -1,5 +1,5 @@
 ---
- - name: Play for Install Nginx on WebServers
+ - name: Play for Install Nginx on Servers
    hosts: all
    gather_facts: no
    become: yes
@@ -14,7 +14,7 @@
         tags:
           - update
       - name: Clone Git Repo
-        shell: cd /tmp && git clone -b DevOpsB24-Dev https://github.com/mavrick202/dockertest1.git
+        shell: cd /tmp && git clone https://github.com/si-vas/NginX-Testing.git
         tags:
           - clone 
       - name: Install Nginx Server
@@ -25,7 +25,7 @@
            - install
       - name: Copy the files to index destination folder.
         copy:
-           src: /tmp/dockertest1/index.html
+           src: /tmp/NginX-Testing/index.html
            dest: /var/www/html/index.nginx-debian.html
            remote_src: yes
            owner: root
@@ -36,7 +36,7 @@
           - index  
       - name: Copy the style files to destination folder.
         copy:
-           src: /tmp/dockertest1/style.css
+           src: /tmp/NginX-Testing/style.css
            dest: /var/www/html/style.css
            remote_src: yes
            owner: root
@@ -46,7 +46,7 @@
           - style
       - name: Copy the js files to destination folder.
         copy:
-           src: /tmp/dockertest1/scorekeeper.js
+           src: /tmp/NginX-Testing/scorekeeper.js
            dest: /var/www/html/scorekeeper.js
            remote_src: yes
            owner: root
@@ -59,6 +59,6 @@
         tags:
           - restart
       - name: Delete Git Repo
-        shell: rm -rf /tmp/dockertest1
+        shell: rm -rf /tmp/NginX-Testing
         tags:
           - delete
