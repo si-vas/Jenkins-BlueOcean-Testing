@@ -1,5 +1,5 @@
 {
-    "_comment": "Create a dummy AWS AMI to implement nginx through Jenkins ",
+    "_comment": "Create a dummy AWS AMI to implement nginx through ansible ",
     "variables": {
         "region": "",
         "source_ami": "",
