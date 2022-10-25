@@ -1,5 +1,5 @@
 {
-    "_comment": "Create a AWS AMI ith AMZ Linux 2018 with Java and Tomcat",
+    "_comment": "Create a dummy AWS AMI to implement nginx through Jenkins ",
     "variables": {
         "region": "",
         "source_ami": "",
