@@ -1,5 +1,9 @@
 pipeline {
   agent any
+  environment {
+   PACKER_ACTION = 'No'
+   ACTION = 'DEPLOY'
+  }
   stages {
     stage('Perform Packer Build') {
       when {
@@ -98,9 +102,5 @@ pipeline {
       }
     }
 
-  }
-  environment {
-    PACKER_ACTION = 'No'
-    ACTION = 'DELETE'
   }
 }
