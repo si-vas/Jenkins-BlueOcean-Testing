@@ -8,7 +8,7 @@ pipeline {
     stage('Perform Packer Build') {
       when {
         expression {
-          env.PACKER_ACTION == 'YES'
+          env.PACKER_ACTION != 'YES'
         }
 
       }
@@ -30,7 +30,7 @@ pipeline {
     stage('No Packer Build') {
       when {
         expression {
-          env.PACKER_ACTION != 'YES'
+          env.PACKER_ACTION == 'YES'
         }
 
       }
@@ -38,7 +38,7 @@ pipeline {
         sh 'pwd'
         sh 'ls -al'
         sh 'echo "" >> variables.tf'
-        sh 'echo variable \\"imagename\\" { default = \\"ami-0834546cdf9c3e0a9\\" } >> variables.tf'
+        sh 'echo variable \\"imagename\\" { default = \\"ami-065ce7665c3c7a748\\" } >> variables.tf'
       }
     }
 
