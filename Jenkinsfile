@@ -45,7 +45,7 @@ pipeline {
     stage('Terraform Plan') {
       when {
         expression {
-          env.ACTION == 'DEPLOY'
+          env.ACTION != 'DEPLOY'
         }
 
       }
