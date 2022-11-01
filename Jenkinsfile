@@ -1,9 +1,5 @@
 pipeline {
   agent any
-  environment {
-       PACKER_ACTION = 'No'
-       ACTION = 'DEPLOY'
-    }
   stages {
     stage('Perform Packer Build') {
       when {
@@ -68,6 +64,7 @@ pipeline {
         sh 'terraform apply --auto-approve'
       }
     }
+
     stage('Terraform State Show') {
       when {
         expression {
@@ -101,5 +98,9 @@ pipeline {
       }
     }
 
+  }
+  environment {
+    PACKER_ACTION = 'No'
+    ACTION = 'DELETE'
   }
 }
