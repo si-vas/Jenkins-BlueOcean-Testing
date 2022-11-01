@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment {
        PACKER_ACTION = 'No'
-       ACTION = 'DELETE'
+       ACTION = 'DEPLOY'
     }
   stages {
     stage('Perform Packer Build') {
@@ -38,7 +38,7 @@ pipeline {
         sh 'pwd'
         sh 'ls -al'
         sh 'echo "" >> variables.tf'
-        sh 'echo variable \\"imagename\\" { default = \\"ami-065ce7665c3c7a748\\" } >> variables.tf'
+        sh 'echo variable \\"imagename\\" { default = \\"ami-024c319d5d14b463e\\" } >> variables.tf'
       }
     }
 
