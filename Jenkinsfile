@@ -1,10 +1,14 @@
 pipeline {
   agent any
+  environment {
+       PACKER_ACTION = 'YES'
+       ACTION = 'DEPLOY'
+    }
   stages {
     stage('Perform Packer Build') {
       when {
         expression {
-          params.PACKER_ACTION == 'YES'
+          env.PACKER_ACTION == 'YES'
         }
 
       }
@@ -26,7 +30,7 @@ pipeline {
     stage('No Packer Build') {
       when {
         expression {
-          params.PACKER_ACTION == 'NO'
+          env.PACKER_ACTION != 'YES'
         }
 
       }
@@ -41,7 +45,7 @@ pipeline {
     stage('Terraform Plan') {
       when {
         expression {
-          params.ACTION == 'DEPLOY'
+          env.ACTION == 'DEPLOY'
         }
 
       }
@@ -55,7 +59,7 @@ pipeline {
     stage('Terraform Apply') {
       when {
         expression {
-          params.ACTION == 'DEPLOY'
+          env.ACTION == 'DEPLOY'
         }
 
       }
@@ -68,7 +72,7 @@ pipeline {
     stage('Terraform Destroy') {
       when {
         expression {
-          params.ACTION == 'DESTROY'
+          env.ACTION != 'DESTROY'
         }
 
       }
