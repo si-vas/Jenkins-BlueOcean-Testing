@@ -8,7 +8,7 @@ pipeline {
     stage('Perform Packer Build') {
       when {
         expression {
-          env.PACKER_ACTION != 'YES'
+          env.PACKER_ACTION == 'YES'
         }
 
       }
@@ -30,7 +30,7 @@ pipeline {
     stage('No Packer Build') {
       when {
         expression {
-          env.PACKER_ACTION == 'YES'
+          env.PACKER_ACTION != 'YES'
         }
 
       }
@@ -45,7 +45,7 @@ pipeline {
     stage('Terraform Plan') {
       when {
         expression {
-          env.ACTION != 'DEPLOY'
+          env.ACTION == 'DEPLOY'
         }
 
       }
@@ -59,7 +59,7 @@ pipeline {
     stage('Terraform Apply') {
       when {
         expression {
-          env.ACTION != 'DEPLOY'
+          env.ACTION == 'DEPLOY'
         }
 
       }
@@ -68,11 +68,23 @@ pipeline {
         sh 'terraform apply --auto-approve'
       }
     }
+    stage('Terraform Apply') {
+      when {
+        expression {
+          env.ACTION == 'DEPLOY'
+        }
+
+      }
+      steps {
+        sh 'terraform init'
+        sh 'terraform state list'
+      }
+    }
 
     stage('Terraform Destroy') {
       when {
         expression {
-          env.ACTION == 'DEPLOY'
+          env.ACTION != 'DEPLOY'
         }
 
       }
