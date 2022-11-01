@@ -68,7 +68,7 @@ pipeline {
         sh 'terraform apply --auto-approve'
       }
     }
-    stage('Terraform Apply') {
+    stage('Terraform State Show') {
       when {
         expression {
           env.ACTION == 'DEPLOY'
