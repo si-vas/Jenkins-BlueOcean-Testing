@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage('Perform Packer Build') {
       when {
-        branch 'master'
+        branch 'Dev'
         expression {
           env.PACKER_ACTION == 'YES'
         }
@@ -30,7 +30,7 @@ pipeline {
 
     stage('No Packer Build') {
       when {
-        branch 'master'
+        branch 'Dev'
         expression {
           env.PACKER_ACTION != 'YES'
         }
@@ -46,7 +46,7 @@ pipeline {
 
     stage('Terraform Plan') {
       when {
-        branch 'master'
+        branch 'Dev'
         expression {
           env.ACTION == 'DEPLOY'
         }
@@ -61,7 +61,7 @@ pipeline {
 
     stage('Terraform Apply') {
       when {
-        branch 'master'
+        branch 'Dev'
         expression {
           env.ACTION == 'DEPLOY'
         }
@@ -75,7 +75,7 @@ pipeline {
 
     stage('Terraform State Show') {
       when {
-        branch 'master'
+        branch 'Dev'
         expression {
           env.ACTION == 'DEPLOY'
         }
@@ -89,7 +89,7 @@ pipeline {
 
     stage('Terraform Destroy') {
       when {
-        branch 'master'
+        branch 'Dev'
         expression {
           env.ACTION != 'DEPLOY'
         }
