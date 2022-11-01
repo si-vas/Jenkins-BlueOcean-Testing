@@ -59,7 +59,7 @@ pipeline {
     stage('Terraform Apply') {
       when {
         expression {
-          env.ACTION == 'DEPLOY'
+          env.ACTION != 'DEPLOY'
         }
 
       }
@@ -72,7 +72,7 @@ pipeline {
     stage('Terraform Destroy') {
       when {
         expression {
-          env.ACTION != 'DEPLOY'
+          env.ACTION == 'DEPLOY'
         }
 
       }
